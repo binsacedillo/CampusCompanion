@@ -88,6 +88,13 @@
                                     <action selector="exploreButtonTapped:" destination="VC-main" eventType="touchUpInside" id="action-explore"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-announcements">
+                                <rect key="frame" x="111" y="756" width="171" height="35"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Campus Announcements"/>
+                                <connections>
+                                    <segue destination="VC-announcements" kind="show" id="segue-show-announcements"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="safe-area"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -126,6 +133,8 @@
                             <constraint firstItem="safe-area" firstAttribute="trailing" secondItem="stepper-guests" secondAttribute="trailing" constant="32" id="guests-stepper-trailing"/>
                             <constraint firstItem="button-explore" firstAttribute="top" secondItem="stepper-guests" secondAttribute="bottom" constant="24" id="explore-button-top"/>
                             <constraint firstItem="button-explore" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="explore-button-center"/>
+                            <constraint firstItem="button-announcements" firstAttribute="top" secondItem="button-explore" secondAttribute="bottom" constant="16" id="announcements-button-top"/>
+                            <constraint firstItem="button-announcements" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="announcements-button-center"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Campus Companion" id="nav-item-welcome"/>
@@ -191,6 +200,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="detail-first-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1040" y="120"/>
+        </scene>
+        <scene sceneID="scene-announcements">
+            <objects>
+                <tableViewController id="VC-announcements" customClass="AnnouncementsViewController" customModule="CampusCompanionAcedillo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="table-announcements">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnnouncementCell" rowHeight="68" id="cell-announcement" customClass="AnnouncementCell" customModule="CampusCompanionAcedillo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="68"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-announcement" id="announcement-content">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="announcement-icon">
+                                            <rect key="frame" x="16" y="18" width="32" height="32"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Announcement Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="announcement-title">
+                                            <rect key="frame" x="60" y="10" width="317" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="250" text="Category • Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="announcement-date">
+                                            <rect key="frame" x="60" y="34" width="317" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="announcement-icon" firstAttribute="leading" secondItem="announcement-content" secondAttribute="leading" constant="16" id="announcement-icon-leading"/>
+                                        <constraint firstItem="announcement-icon" firstAttribute="centerY" secondItem="announcement-content" secondAttribute="centerY" id="announcement-icon-center-y"/>
+                                        <constraint firstItem="announcement-icon" firstAttribute="width" constant="32" id="announcement-icon-width"/>
+                                        <constraint firstItem="announcement-icon" firstAttribute="height" constant="32" id="announcement-icon-height"/>
+                                        <constraint firstItem="announcement-title" firstAttribute="leading" secondItem="announcement-icon" secondAttribute="trailing" constant="12" id="announcement-title-leading"/>
+                                        <constraint firstItem="announcement-title" firstAttribute="top" secondItem="announcement-content" secondAttribute="top" constant="10" id="announcement-title-top"/>
+                                        <constraint firstItem="announcement-content" firstAttribute="trailing" secondItem="announcement-title" secondAttribute="trailing" constant="16" id="announcement-title-trailing"/>
+                                        <constraint firstItem="announcement-date" firstAttribute="leading" secondItem="announcement-title" secondAttribute="leading" id="announcement-date-leading"/>
+                                        <constraint firstItem="announcement-date" firstAttribute="top" secondItem="announcement-title" secondAttribute="bottom" constant="4" id="announcement-date-top"/>
+                                        <constraint firstItem="announcement-content" firstAttribute="trailing" secondItem="announcement-date" secondAttribute="trailing" constant="16" id="announcement-date-trailing"/>
+                                        <constraint firstItem="announcement-content" firstAttribute="bottom" secondItem="announcement-date" secondAttribute="bottom" constant="10" id="announcement-date-bottom"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryIconImageView" destination="announcement-icon" id="announcement-icon-outlet"/>
+                                    <outlet property="dateLabel" destination="announcement-date" id="announcement-date-outlet"/>
+                                    <outlet property="titleLabel" destination="announcement-title" id="announcement-title-outlet"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="VC-announcements" id="announcements-data-source"/>
+                            <outlet property="delegate" destination="VC-announcements" id="announcements-delegate"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="VC-detail" kind="show" identifier="ShowAnnouncementDetailSegue" id="segue-show-announcement-detail"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="announcements-first-responder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1960" y="120"/>
         </scene>
     </scenes>
     <resources>
