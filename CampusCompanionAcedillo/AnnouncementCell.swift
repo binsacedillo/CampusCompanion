@@ -8,7 +8,7 @@ class AnnouncementCell: UITableViewCell {
 
     func configure(with announcement: CampusAnnouncement) {
         titleLabel.text = announcement.title
-        dateLabel.text = "\(announcement.postedBy) • \(announcement.priority)"
+        dateLabel.text = "\(announcement.category) • \(announcement.date)"
 
         let isUrgent = announcement.priority == "Urgent"
         categoryIconImageView.image = UIImage(
