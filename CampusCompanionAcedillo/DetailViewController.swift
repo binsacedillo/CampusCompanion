@@ -19,8 +19,6 @@ class DetailViewController: UIViewController {
             \(announcement.title)
             Category: \(announcement.category)
             Date: \(announcement.date)
-            Priority: \(announcement.priority)
-            Posted by: \(announcement.postedBy)
             """
         } else {
             title = "Campus Events"

@@ -137,7 +137,13 @@
                             <constraint firstItem="button-announcements" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="announcements-button-center"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Campus Companion" id="nav-item-welcome"/>
+                    <navigationItem key="navigationItem" title="Campus Companion" id="nav-item-welcome">
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="button-reset-preferences">
+                            <connections>
+                                <action selector="resetPreferencesTapped:" destination="VC-main" id="action-reset-preferences"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="eventDatePicker" destination="picker-event-date" id="outlet-event-date"/>
                         <outlet property="guestStepper" destination="stepper-guests" id="outlet-guests"/>
@@ -258,6 +264,13 @@
                             <outlet property="delegate" destination="VC-announcements" id="announcements-delegate"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Campus Announcements" id="nav-item-announcements">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="button-add-announcement">
+                            <connections>
+                                <action selector="addAnnouncementTapped:" destination="VC-announcements" id="action-add-announcement"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="VC-detail" kind="show" identifier="ShowAnnouncementDetailSegue" id="segue-show-announcement-detail"/>
                     </connections>
