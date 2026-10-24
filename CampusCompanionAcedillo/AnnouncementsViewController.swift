@@ -28,7 +28,19 @@ class AnnouncementsViewController: UITableViewController {
     }
 
     private func fetchAnnouncementsFromServer() {
-        let task = URLSession.shared.dataTask(with: RemoteEndpoint.announcements) {
+        var components = URLComponents(
+            url: RemoteEndpoint.announcements,
+            resolvingAgainstBaseURL: false
+        )!
+        components.queryItems = [
+            URLQueryItem(name: "refresh", value: String(Date().timeIntervalSince1970))
+        ]
+
+        var request = URLRequest(url: components.url!)
+        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
+
+        let task = URLSession.shared.dataTask(with: request) {
             [weak self] data, response, error in
             if let error = error {
                 print("Network error: \(error.localizedDescription)")
