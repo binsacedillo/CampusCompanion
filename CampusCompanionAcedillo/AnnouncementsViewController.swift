@@ -104,12 +104,16 @@ class AnnouncementsViewController: UITableViewController {
         }
 
         let seedAnnouncements = [
-            ("Enrollment Period Extended", "August 3, 2026", "Registrar", "Registrar Office", "High"),
-            ("Library Schedule Update", "August 5, 2026", "Library", "Main Library", "Normal"),
-            ("Campus Sports Festival", "August 10, 2026", "Student Affairs", "Campus Gym", "High"),
-            ("Scholarship Applications Open", "August 12, 2026", "Scholarships", "Student Center", "Normal"),
-            ("System Maintenance Notice", "August 15, 2026", "IT Services", "Online", "High"),
-            ("University Foundation Day", "August 20, 2026", "Campus Events", "Main Grounds", "Normal")
+            ("Enrollment Period Extended", "October 28, 2026", "Registrar", "Registrar Office", "High"),
+            ("Library Schedule Update", "November 3, 2026", "Library", "Main Library", "Normal"),
+            ("Campus Sports Festival", "November 10, 2026", "Student Affairs", "Campus Gym", "High"),
+            ("Scholarship Applications Open", "November 18, 2026", "Scholarships", "Student Center", "Normal"),
+            ("System Maintenance Notice", "November 27, 2026", "IT Services", "Online", "High"),
+            ("University Foundation Day", "December 3, 2026", "Campus Events", "Main Grounds", "Normal"),
+            ("Final Examination Schedule Released", "December 8, 2026", "Academic Affairs", "Online Student Portal", "High"),
+            ("Holiday Donation Drive", "December 12, 2026", "Community Extension", "Student Center Lobby", "Normal"),
+            ("Year-End Recognition Program", "December 16, 2026", "Campus Events", "University Auditorium", "High"),
+            ("Christmas Break Campus Closure", "December 21, 2026", "Administration", "University-wide", "High")
         ]
 
         for seed in seedAnnouncements {
