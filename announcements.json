@@ -1,14 +1,14 @@
 [
   {
     "title": "Enrollment Period Extended",
-    "date": "November 3, 2026",
+    "date": "October 28, 2026",
     "category": "Registrar",
     "location": "Registrar Office",
     "priority": "High"
   },
   {
     "title": "Library Schedule Update",
-    "date": "November 5, 2026",
+    "date": "November 3, 2026",
     "category": "Library",
     "location": "Main Library",
     "priority": "Normal"
@@ -22,23 +22,51 @@
   },
   {
     "title": "Scholarship Applications Open",
-    "date": "November 12, 2026",
+    "date": "November 18, 2026",
     "category": "Scholarships",
     "location": "Student Center",
     "priority": "Normal"
   },
   {
     "title": "System Maintenance Notice",
-    "date": "November 15, 2026",
+    "date": "November 27, 2026",
     "category": "IT Services",
     "location": "Online",
     "priority": "High"
   },
   {
     "title": "University Foundation Day",
-    "date": "November 20, 2026",
+    "date": "December 3, 2026",
     "category": "Campus Events",
     "location": "Main Grounds",
     "priority": "Normal"
+  },
+  {
+    "title": "Final Examination Schedule Released",
+    "date": "December 8, 2026",
+    "category": "Academic Affairs",
+    "location": "Online Student Portal",
+    "priority": "High"
+  },
+  {
+    "title": "Holiday Donation Drive",
+    "date": "December 12, 2026",
+    "category": "Community Extension",
+    "location": "Student Center Lobby",
+    "priority": "Normal"
+  },
+  {
+    "title": "Year-End Recognition Program",
+    "date": "December 16, 2026",
+    "category": "Campus Events",
+    "location": "University Auditorium",
+    "priority": "High"
+  },
+  {
+    "title": "Christmas Break Campus Closure",
+    "date": "December 21, 2026",
+    "category": "Administration",
+    "location": "University-wide",
+    "priority": "High"
   }
 ]
