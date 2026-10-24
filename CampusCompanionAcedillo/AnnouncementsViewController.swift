@@ -40,7 +40,14 @@ class AnnouncementsViewController: UITableViewController {
         request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
 
-        let task = URLSession.shared.dataTask(with: request) {
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        configuration.urlCache = nil
+        let session = URLSession(configuration: configuration)
+
+        print("Fetching fresh announcements from: \(request.url!.absoluteString)")
+
+        let task = session.dataTask(with: request) {
             [weak self] data, response, error in
             if let error = error {
                 print("Network error: \(error.localizedDescription)")
