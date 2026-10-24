@@ -215,15 +215,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnnouncementCell" rowHeight="68" id="cell-announcement" customClass="AnnouncementCell" customModule="CampusCompanionAcedillo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="393" height="68"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnnouncementCell" rowHeight="88" id="cell-announcement" customClass="AnnouncementCell" customModule="CampusCompanionAcedillo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cell-announcement" id="announcement-content">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="68"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="88"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="announcement-icon">
-                                            <rect key="frame" x="16" y="18" width="32" height="32"/>
+                                            <rect key="frame" x="16" y="28" width="32" height="32"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Announcement Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="announcement-title">
                                             <rect key="frame" x="60" y="10" width="317" height="20"/>
@@ -231,8 +231,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="250" text="Category • Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="announcement-date">
-                                            <rect key="frame" x="60" y="34" width="317" height="24"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="250" text="Category • Date&#10;Location • Priority" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="announcement-date">
+                                            <rect key="frame" x="60" y="34" width="317" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -265,11 +265,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Campus Announcements" id="nav-item-announcements">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="button-add-announcement">
-                            <connections>
-                                <action selector="addAnnouncementTapped:" destination="VC-announcements" id="action-add-announcement"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="button-add-announcement">
+                                <connections>
+                                    <action selector="addAnnouncementTapped:" destination="VC-announcements" id="action-add-announcement"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="button-refresh-announcements">
+                                <connections>
+                                    <action selector="refreshTapped:" destination="VC-announcements" id="action-refresh-announcements"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <segue destination="VC-detail" kind="show" identifier="ShowAnnouncementDetailSegue" id="segue-show-announcement-detail"/>

@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Enrollment Period Extended",
+    "date": "November 3, 2026",
+    "category": "Registrar",
+    "location": "Registrar Office",
+    "priority": "High"
+  },
+  {
+    "title": "Library Schedule Update",
+    "date": "November 5, 2026",
+    "category": "Library",
+    "location": "Main Library",
+    "priority": "Normal"
+  },
+  {
+    "title": "Campus Sports Festival",
+    "date": "November 10, 2026",
+    "category": "Student Affairs",
+    "location": "Campus Gym",
+    "priority": "High"
+  },
+  {
+    "title": "Scholarship Applications Open",
+    "date": "November 12, 2026",
+    "category": "Scholarships",
+    "location": "Student Center",
+    "priority": "Normal"
+  },
+  {
+    "title": "System Maintenance Notice",
+    "date": "November 15, 2026",
+    "category": "IT Services",
+    "location": "Online",
+    "priority": "High"
+  },
+  {
+    "title": "University Foundation Day",
+    "date": "November 20, 2026",
+    "category": "Campus Events",
+    "location": "Main Grounds",
+    "priority": "Normal"
+  }
+]

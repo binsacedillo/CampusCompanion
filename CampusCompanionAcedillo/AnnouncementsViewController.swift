@@ -1,6 +1,12 @@
 import UIKit
 import CoreData
 
+private enum RemoteEndpoint {
+    static let announcements = URL(
+        string: "https://raw.githubusercontent.com/binsacedillo/CampusCompanion/main/announcements.json"
+    )!
+}
+
 class AnnouncementsViewController: UITableViewController {
 
     private var announcements: [CampusAnnouncement] = []
@@ -17,18 +23,93 @@ class AnnouncementsViewController: UITableViewController {
         loadAnnouncements()
     }
 
+    @IBAction private func refreshTapped(_ sender: UIBarButtonItem) {
+        fetchAnnouncementsFromServer()
+    }
+
+    private func fetchAnnouncementsFromServer() {
+        let task = URLSession.shared.dataTask(with: RemoteEndpoint.announcements) {
+            [weak self] data, response, error in
+            if let error = error {
+                print("Network error: \(error.localizedDescription)")
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("Unexpected server response.")
+                return
+            }
+
+            guard let self, let data = data else { return }
+            print("Reached network handler with \(data.count) bytes.")
+            if let rawJSON = String(data: data, encoding: .utf8) {
+                print(rawJSON)
+            }
+
+            do {
+                let decodedAnnouncements = try JSONDecoder().decode(
+                    [AnnouncementDTO].self,
+                    from: data
+                )
+                DispatchQueue.main.async {
+                    self.replaceAnnouncements(with: decodedAnnouncements)
+                    self.showNetworkConfirmationAlert(byteCount: data.count)
+                }
+            } catch {
+                print("Decoding error: \(error)")
+            }
+        }
+        task.resume()
+    }
+
+    private func replaceAnnouncements(with dtos: [AnnouncementDTO]) {
+        let request: NSFetchRequest<CampusAnnouncement> = CampusAnnouncement.fetchRequest()
+        let existing = (try? context.fetch(request)) ?? []
+        existing.forEach(context.delete)
+
+        for dto in dtos {
+            let announcement = CampusAnnouncement(context: context)
+            announcement.title = dto.title
+            announcement.date = dto.date
+            announcement.category = dto.category
+            announcement.location = dto.location
+            announcement.priority = dto.priority
+        }
+
+        try? context.save()
+        loadAnnouncements()
+    }
+
+    private func showNetworkConfirmationAlert(byteCount: Int) {
+        let alert = UIAlertController(
+            title: "Server Reached",
+            message: "Received \(byteCount) bytes from the announcements endpoint.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
+
     private func seedInitialAnnouncementsIfNeeded() {
         let request: NSFetchRequest<CampusAnnouncement> = CampusAnnouncement.fetchRequest()
-        let existingCount = (try? context.count(for: request)) ?? 0
-        guard existingCount == 0 else { return }
+        let existing = (try? context.fetch(request)) ?? []
+        if !existing.isEmpty {
+            for announcement in existing {
+                if announcement.location?.isEmpty != false { announcement.location = "Campus" }
+                if announcement.priority?.isEmpty != false { announcement.priority = "Normal" }
+            }
+            try? context.save()
+            return
+        }
 
         let seedAnnouncements = [
-            ("Enrollment Period Extended", "August 3, 2026", "Registrar"),
-            ("Library Schedule Update", "August 5, 2026", "Library"),
-            ("Campus Sports Festival", "August 10, 2026", "Student Affairs"),
-            ("Scholarship Applications Open", "August 12, 2026", "Scholarships"),
-            ("System Maintenance Notice", "August 15, 2026", "IT Services"),
-            ("University Foundation Day", "August 20, 2026", "Campus Events")
+            ("Enrollment Period Extended", "August 3, 2026", "Registrar", "Registrar Office", "High"),
+            ("Library Schedule Update", "August 5, 2026", "Library", "Main Library", "Normal"),
+            ("Campus Sports Festival", "August 10, 2026", "Student Affairs", "Campus Gym", "High"),
+            ("Scholarship Applications Open", "August 12, 2026", "Scholarships", "Student Center", "Normal"),
+            ("System Maintenance Notice", "August 15, 2026", "IT Services", "Online", "High"),
+            ("University Foundation Day", "August 20, 2026", "Campus Events", "Main Grounds", "Normal")
         ]
 
         for seed in seedAnnouncements {
@@ -36,6 +117,8 @@ class AnnouncementsViewController: UITableViewController {
             announcement.title = seed.0
             announcement.date = seed.1
             announcement.category = seed.2
+            announcement.location = seed.3
+            announcement.priority = seed.4
         }
 
         try? context.save()

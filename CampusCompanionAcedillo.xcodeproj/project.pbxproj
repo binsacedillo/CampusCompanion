@@ -17,6 +17,7 @@
 		B10000000000000000000008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000008 /* LaunchScreen.storyboard */; };
 		B10000000000000000000009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B20000000000000000000009 /* Assets.xcassets */; };
 		B1000000000000000000000A /* CampusCompanion.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B80000000000000000000001 /* CampusCompanion.xcdatamodeld */; };
+		B1000000000000000000000B /* AnnouncementDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2000000000000000000000D /* AnnouncementDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		B2000000000000000000000A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2000000000000000000000B /* CampusCompanionAcedillo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusCompanionAcedillo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2000000000000000000000C /* CampusCompanion.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CampusCompanion.xcdatamodel; sourceTree = "<group>"; };
+		B2000000000000000000000D /* AnnouncementDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementDTO.swift; sourceTree = "<group>"; };
+		B2000000000000000000000E /* CampusCompanionV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CampusCompanionV2.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,7 @@
 				B20000000000000000000004 /* DetailViewController.swift */,
 				B20000000000000000000005 /* AnnouncementsViewController.swift */,
 				B20000000000000000000006 /* AnnouncementCell.swift */,
+				B2000000000000000000000D /* AnnouncementDTO.swift */,
 				B20000000000000000000007 /* Main.storyboard */,
 				B20000000000000000000008 /* LaunchScreen.storyboard */,
 				B20000000000000000000009 /* Assets.xcassets */,
@@ -156,6 +160,7 @@
 				B10000000000000000000004 /* DetailViewController.swift in Sources */,
 				B10000000000000000000005 /* AnnouncementsViewController.swift in Sources */,
 				B10000000000000000000006 /* AnnouncementCell.swift in Sources */,
+				B1000000000000000000000B /* AnnouncementDTO.swift in Sources */,
 				B1000000000000000000000A /* CampusCompanion.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -325,8 +330,9 @@
 			isa = XCVersionGroup;
 			children = (
 				B2000000000000000000000C /* CampusCompanion.xcdatamodel */,
+				B2000000000000000000000E /* CampusCompanionV2.xcdatamodel */,
 			);
-			currentVersion = B2000000000000000000000C /* CampusCompanion.xcdatamodel */;
+			currentVersion = B2000000000000000000000E /* CampusCompanionV2.xcdatamodel */;
 			path = CampusCompanion.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

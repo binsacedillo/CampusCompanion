@@ -14,11 +14,13 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
         if let announcement = announcement {
-            title = announcement.category
+            title = announcement.category ?? "Announcement"
             messageLabel.text = """
-            \(announcement.title)
-            Category: \(announcement.category)
-            Date: \(announcement.date)
+            \(announcement.title ?? "Untitled")
+            Category: \(announcement.category ?? "General")
+            Date: \(announcement.date ?? "No date")
+            Location: \(announcement.location ?? "No location")
+            Priority: \(announcement.priority ?? "Normal")
             """
         } else {
             title = "Campus Events"
