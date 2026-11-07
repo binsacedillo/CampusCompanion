@@ -28,22 +28,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="image-campus">
-                                <rect key="frame" x="121.5" y="220" width="150" height="150"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="profile-image">
+                                <rect key="frame" x="146.5" y="198" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="image-width"/>
-                                    <constraint firstAttribute="height" constant="150" id="image-height"/>
+                                    <constraint firstAttribute="width" constant="100" id="profile-image-width"/>
+                                    <constraint firstAttribute="height" constant="100" id="profile-image-height"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-change-photo">
+                                <rect key="frame" x="48" y="306" width="120" height="35"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Change Photo"/>
+                                <connections>
+                                    <action selector="changePhotoTapped:" destination="VC-main" eventType="touchUpInside" id="action-change-photo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-remove-photo">
+                                <rect key="frame" x="225" y="306" width="120" height="35"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Remove Photo"/>
+                                <connections>
+                                    <action selector="removePhotoTapped:" destination="VC-main" eventType="touchUpInside" id="action-remove-photo"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-start">
-                                <rect key="frame" x="147" y="394" width="99" height="35"/>
+                                <rect key="frame" x="147" y="357" width="99" height="35"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Get Started"/>
                                 <connections>
                                     <action selector="getStartedTapped:" destination="VC-main" eventType="touchUpInside" id="action-start"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="text-name">
-                                <rect key="frame" x="32" y="453" width="329" height="34"/>
+                                <rect key="frame" x="32" y="416" width="329" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -105,9 +119,15 @@
                             <constraint firstItem="label-subtitle" firstAttribute="top" secondItem="label-title" secondAttribute="bottom" constant="8" id="subtitle-top"/>
                             <constraint firstItem="label-subtitle" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" constant="20" id="subtitle-leading"/>
                             <constraint firstItem="safe-area" firstAttribute="trailing" secondItem="label-subtitle" secondAttribute="trailing" constant="20" id="subtitle-trailing"/>
-                            <constraint firstItem="image-campus" firstAttribute="top" secondItem="label-subtitle" secondAttribute="bottom" constant="40" id="image-top"/>
-                            <constraint firstItem="image-campus" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="image-center"/>
-                            <constraint firstItem="button-start" firstAttribute="top" secondItem="image-campus" secondAttribute="bottom" constant="24" id="button-top"/>
+                            <constraint firstItem="profile-image" firstAttribute="top" secondItem="label-subtitle" secondAttribute="bottom" constant="16" id="profile-image-top"/>
+                            <constraint firstItem="profile-image" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="profile-image-center"/>
+                            <constraint firstItem="button-change-photo" firstAttribute="top" secondItem="profile-image" secondAttribute="bottom" constant="8" id="change-photo-top"/>
+                            <constraint firstItem="button-change-photo" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" constant="40" id="change-photo-leading"/>
+                            <constraint firstItem="button-change-photo" firstAttribute="centerY" secondItem="button-remove-photo" secondAttribute="centerY" id="change-photo-center-y"/>
+                            <constraint firstItem="button-change-photo" firstAttribute="trailing" secondItem="button-remove-photo" secondAttribute="leading" constant="-8" id="photo-buttons-spacing"/>
+                            <constraint firstItem="button-remove-photo" firstAttribute="top" secondItem="profile-image" secondAttribute="bottom" constant="8" id="remove-photo-top"/>
+                            <constraint firstItem="safe-area" firstAttribute="trailing" secondItem="button-remove-photo" secondAttribute="trailing" constant="40" id="remove-photo-trailing"/>
+                            <constraint firstItem="button-start" firstAttribute="top" secondItem="button-remove-photo" secondAttribute="bottom" constant="16" id="button-top"/>
                             <constraint firstItem="button-start" firstAttribute="centerX" secondItem="safe-area" secondAttribute="centerX" id="button-center"/>
                             <constraint firstItem="text-name" firstAttribute="top" secondItem="button-start" secondAttribute="bottom" constant="24" id="name-top"/>
                             <constraint firstItem="text-name" firstAttribute="leading" secondItem="safe-area" secondAttribute="leading" constant="32" id="name-leading"/>
@@ -149,6 +169,8 @@
                         <outlet property="guestStepper" destination="stepper-guests" id="outlet-guests"/>
                         <outlet property="nameTextField" destination="text-name" id="outlet-name"/>
                         <outlet property="notifySwitch" destination="switch-notify" id="outlet-notify"/>
+                        <outlet property="profileImageView" destination="profile-image" id="outlet-profile-image"/>
+                        <outlet property="removePhotoButton" destination="button-remove-photo" id="outlet-remove-photo"/>
                         <outlet property="roleSegmentedControl" destination="segmented-role" id="outlet-role"/>
                         <outlet property="subtitleLabel" destination="label-subtitle" id="outlet-subtitle"/>
                         <outlet property="titleLabel" destination="label-title" id="outlet-title"/>
@@ -183,9 +205,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Campus Events" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="label-events">
-                                <rect key="frame" x="32" y="416" width="329" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Campus Events" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="label-events">
+                                <rect key="frame" x="24" y="123" width="345" height="100"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="map-campus">
+                                <rect key="frame" x="16" y="247" width="361" height="220"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for location…" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO" id="label-distance">
+                                <rect key="frame" x="24" y="479" width="345" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -193,13 +224,22 @@
                         <viewLayoutGuide key="safeArea" id="detail-safe-area"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="label-events" firstAttribute="centerX" secondItem="detail-safe-area" secondAttribute="centerX" id="events-center-x"/>
-                            <constraint firstItem="label-events" firstAttribute="centerY" secondItem="detail-safe-area" secondAttribute="centerY" id="events-center-y"/>
-                            <constraint firstItem="label-events" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="detail-safe-area" secondAttribute="leading" constant="32" id="events-leading"/>
-                            <constraint firstItem="detail-safe-area" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="label-events" secondAttribute="trailing" constant="32" id="events-trailing"/>
+                            <constraint firstItem="label-events" firstAttribute="top" secondItem="detail-safe-area" secondAttribute="top" constant="20" id="events-top"/>
+                            <constraint firstItem="label-events" firstAttribute="leading" secondItem="detail-safe-area" secondAttribute="leading" constant="24" id="events-leading"/>
+                            <constraint firstItem="detail-safe-area" firstAttribute="trailing" secondItem="label-events" secondAttribute="trailing" constant="24" id="events-trailing"/>
+                            <constraint firstItem="map-campus" firstAttribute="top" secondItem="label-events" secondAttribute="bottom" constant="20" id="map-top"/>
+                            <constraint firstItem="map-campus" firstAttribute="leading" secondItem="detail-safe-area" secondAttribute="leading" constant="16" id="map-leading"/>
+                            <constraint firstItem="detail-safe-area" firstAttribute="trailing" secondItem="map-campus" secondAttribute="trailing" constant="16" id="map-trailing"/>
+                            <constraint firstItem="map-campus" firstAttribute="height" constant="220" id="map-height"/>
+                            <constraint firstItem="label-distance" firstAttribute="top" secondItem="map-campus" secondAttribute="bottom" constant="12" id="distance-top"/>
+                            <constraint firstItem="label-distance" firstAttribute="leading" secondItem="detail-safe-area" secondAttribute="leading" constant="24" id="distance-leading"/>
+                            <constraint firstItem="detail-safe-area" firstAttribute="trailing" secondItem="label-distance" secondAttribute="trailing" constant="24" id="distance-trailing"/>
+                            <constraint firstItem="detail-safe-area" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="label-distance" secondAttribute="bottom" constant="20" id="distance-bottom"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="campusMapView" destination="map-campus" id="outlet-campus-map"/>
+                        <outlet property="distanceLabel" destination="label-distance" id="outlet-distance-label"/>
                         <outlet property="messageLabel" destination="label-events" id="outlet-message"/>
                     </connections>
                 </viewController>
